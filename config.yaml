@@ -1,0 +1,25 @@
+image_size: 1024
+image_encoder: "sam2_tiny_hiera_adapter"
+mask_decoder: "sam2_lora_mask_decoder"
+sam_checkpoint: "/content/SamRadiology/weights/sam2_hiera_tiny.pt"
+wandb_project_name: "ACDC"
+
+dataset:
+  name: acdc
+  root: /content/drive/MyDrive/ACDCPreprocessed
+  image_size: 1024
+  split: 0.0526 # 0.0263 # training split
+  seed: 42
+  batch_size: 2
+  num_workers: 4
+  num_classes: 3
+  num_tokens: 10
+
+training:
+  max_epochs: 10
+  save_path: ./checkpoints/ACDC
+
+inference:
+  name: acdc_test
+  root: /content/drive/MyDrive/ACDCPreprocessed/Test
+  checkpoint_path: ./checkpoints 
